@@ -1,48 +1,177 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:og="http://ogp.me/ns#"
-xmlns:fb="http://www.facebook.com/2008/fbml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Die Facebook Javascript SDK</title>
-		<script src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
-	</head>
-	<body>
-		<div id="fb-root"></div>
-		<script src="http://connect.facebook.net/de_DE/all.js"></script>
-		<script>
-			FB.init({
-				appId : '180501858643472', // Anwendungs ID
-				status : true, // Login Status prüfen
-				cookie : true, // Cookies nutzen
-				xfbml : true // XFBML parsen
-			});
-			( function() {
-					var e = document.createElement('script');
-					e.async = true;
-					e.src = document.location.protocol + '//connect.facebook.net/de_DE/all.js';
-					document.getElementById('fb-root').appendChild(e);
-				}());
-		</script>
-		<!-- Hier werden unsere Beispiele eingefügt -->
-		<fb:login-button>
-			Yolo
-		</fb:login-button>
-		<button id="fb-login">
-			Login
-		</button>
+<!DOCTYPE HTML>
 
+<head>
+	<meta charset="utf-8"/>
+	<meta name="author" content="Alexander Vielhauer">
+	<title>Scale Your Friends</title>
+	<link href="style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+	<script type="text/javascript" src="utility.js"></script>
+	<meta name="viewpoint" content="width=device-width,initial-scale=1,maximum-scale=1"/>
 		<script>
-			$('#fb-login').click(function() {
-				FB.login(function(response) {
-					if (response.session) {
-						console.log('User ist eingeloggt.');
-					} else {
-						console.log('User ist nicht eingeloggt.');
-					}
+		var sock = null;
+		var wsuri = "ws://localhost:9034";
+
+		window.onload = function() {
+
+			sock = new WebSocket(wsuri);
+
+			sock.onopen = function() {
+				console.log("connected to " + wsuri);
+			}
+
+			sock.onclose = function(e) {
+				console.log("connection closed (" + e.code + ")");
+				document.getElementById('chat').innerHTML += '<br>connection closed (' + e.code + ')';
+			}
+
+			sock.onmessage = function(e) {
+				console.log("message received: " + e.data);
+				document.getElementById('chat').innerHTML += '<br>' + e.data;
+				prefix = e.data.substr(0, 7);
+				data = e.data.substring(7, e.data.length);
+				switch (prefix) {
+					case "NAMUSED":
+						alert("Nutzername bereits vergeben!");
+						usernameinput.value = "";
+						break;
+					case "USERADD":
+						loadhome();
+						break;
+					case "MGROUPS":
+						splitdata = data.split('!#!');
+						for (split in splitdata){
+						splitdata[split] = splitdata[split].replace(/##/g,"<br>Chief: ");
+						}
+						//name##master
+						//$("#content").load("jquerysucks.html", function() {
+							$("#content").load("home.html", function() {
+								clear_list('grouplist')
+								add_li('grouplist', '<data-role="list-divider" role="heading">' + 'Deine Gruppen')
+								load_list('grouplist', splitdata)
+							});
+						//});
+
+						break;
+					case "MYGROUP":
+						splitdata = data.split('##');
+						//player
+						$("#content").load("jquerysucks.html", function() {
+							$("#content").load("home.html", function() {
+								clear_list('grouplist')
+								x = splitdata.pop(); //U or M
+								y = splitdata.pop(); //groupname
+								document.getElementById('footertext').innerHTML = y;
+								add_li('grouplist', '<data-role="list-divider" role="heading">' + y +' - Mitglieder');
+								load_list2('grouplist', splitdata);
+								if (x=="M"){
+									$("#buttons").load("master.html", function() {
+									});	
+								}
+								else {
+									$("#buttons").load("user.html", function() {
+									});
+								}
+							});
+						});
+						
+						break;
+					case "NOTFOUN":
+						users = data.split('##');
+						if (users[0] == "") {
+							return 0;
+						}
+						push = "Folgende Nutzer konnten nicht gefunden werden:\n";
+						for (x in users) {
+							push += users[x] + '\n'
+						}
+						alert(push);
+						break;
+					case "DELGROU":
+						alert("Gruppe "+data+" wurde gelöscht.");
+						sock.send("MYGROUPS: ");
+						break;
+					case "KICUSER":
+						alert("Du wurdest aus der Gruppe\n"+data+" gekickt.")
+						//sock.send("MYGROUPS: ");
+						break;
+					case "NOKICKU":
+						alert(data+" konnte nicht gefunden werden.")
+					default:
+						break;
+				}
+			}
+		};
+		/*alert("yo");
+		 $("#content").load("home.html", function() {
+		 });
+		 $.get('home.html', function (response){
+		 var myHtml = $('#homecontent', response);
+		 $('#content').html(response);
+		 });*/
+
+		function loadhome() {
+
+			//TODO:WARUMGEHTHIERNICHT?document.getElementById('headeruser').innerHTML = username;
+			/*$.get('home.html', function(data) {
+			 $('#content').html(data);
+			 alert('Load was performed.');
+			 });*/
+			$("#content").load("jquerysucks.html", function() {
+				$("#content").load("home.html", function() {
+					send('MYGROUPS: ');
 				});
 			});
-		</script>
-	</body>
+
+		}
+
+		function senduser(username) {
+			document.getElementById('headeruser').innerHTML = username;
+
+			if (username == "") {
+				alert("Bitte einen Nutzernamen eingeben.");
+			} else {
+				sock.send('USERNAME: ' + username);
+			}
+
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<div data-role="page" id="index">
+
+		<header>
+			<div data-theme="a" data-role="header" id="header">
+				<a data-role="button" onclick="loadhome()" class="ui-btn-left" id="button1" data-icon="home" data-iconpos="left"> Home </a>
+				<a data-role="button" onclick="info()" class="ui-btn-right" id="button2" data-icon="info" data-iconpos="right"> Info </a>
+				<h3 id="headeruser"> Scale Your Friends </h3>
+			</div>
+		</header>
+
+		<div data-role="content" id="content">
+			<h2> Willkommen bei
+			<br>
+			Scale Your Friends </h2>
+			<div data-role="fieldcontain">
+				<label for="usernameinput" id="tests"> Nutzername </label>
+				<input name="" id="usernameinput" placeholder="Hier Nutzernamen eingeben"
+				value="" type="text" onkeyup="check(usernameinput.value,12,usernameinput)">
+			</div>
+			<input id="login" value="Einloggen !" type="submit" onclick="senduser(usernameinput.value)">
+
+		</div>
+
+		<div id="chat">
+
+		</div>
+		<footer id="footer" data-theme="a" data-role="footer" data-position="fixed">
+			<h3 id="footertext">Scale Your Friends</h3>
+		</footer>
+	</div>
+</body>
 </html>

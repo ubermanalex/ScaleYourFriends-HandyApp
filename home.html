@@ -1,0 +1,73 @@
+
+	
+
+<script>
+	function add_li(list, text) {
+		var list = document.getElementById(list);
+		var li = document.createElement("li");
+		li.innerHTML = text;
+		list.appendChild(li);
+	}
+
+	function load_list(list, list_array) {
+		for (var i = 0; i < list_array.length; i++) {
+			xxx = list_array[i].split('<br>Chief: ');
+			x = xxx[0]+'##'+xxx[1];		//name##master
+			add_li(list, "<a href='javascript: loadgroup(x)'>"+list_array[i]+"</a>");
+		}
+	}
+
+	function load_list2(list, list_array) {
+		for (var i = 0; i < list_array.length; i++) {
+			add_li(list, list_array[i]);
+		}
+	}
+
+	function clear_list(list) {
+		var list = document.getElementById(list);
+		while (list.hasChildNodes()) {
+			list.removeChild(list.lastChild);
+		}
+	}
+
+	function send(str) {
+		sock.send(str);
+	}
+
+	function newgroup() {
+
+		name = prompt("Bitte Gruppennamen eingeben.");
+		users = prompt("Bitte Freunde eingeben. (durch Kommata getrennt)");
+		users.replace(/ /g,"");
+		userlist = users.split(",");
+		users = ""
+		for (user in userlist) {
+			users = users + '##' + userlist[user]
+		}
+
+		group = name + '##' + document.getElementById('headeruser').innerHTML + users;
+
+		send('GROUP: ' + group);
+		//add_li('grouplist', "<a href='javascript:clock()'>" + name + "</a>");
+	}
+
+	function loadgroup(x) {
+		group = x.split('##')
+		send('THISGROUP: '+group[0])				
+	}
+
+	/*$("#content").load("addsong.html", function() {
+	 });
+	 }*/
+
+</script>
+
+
+<div id="ra">
+<div id="buttons">
+<input value="Gruppe erstellen" type="submit" onclick="newgroup()">
+</div>
+<ul id="grouplist" data-role="listview" data-divider-theme="b" data-inset="true">
+<li data-theme="c">Deine Gruppen</li>
+</ul>
+</div>

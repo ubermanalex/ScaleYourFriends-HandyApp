@@ -1,0 +1,29 @@
+<script>
+	
+	function newround(){
+		sock.send('ROUND: '+document.getElementById('footertext').innerHTML)
+	}
+	
+	
+	function deletegroup(){
+		x = prompt("Bitte mit '"+document.getElementById('footertext').innerHTML+"' bestätigen.")
+		if (x==document.getElementById('footertext').innerHTML){
+			sock.send('DELGROUP: '+document.getElementById('footertext').innerHTML)
+		}
+	}
+	
+	function adduser(){
+		x = prompt("Wen möchtest Du der Gruppe hinzufügen?")
+		sock.send('ADDUSER: '+x)
+	}
+	
+	function kickuser(){
+		x = prompt("Wen möchtest Du aus der Gruppe entfernen?")
+		sock.send('KICKUSER: '+document.getElementById('footertext').innerHTML+'##'+x)
+	}
+	
+</script>
+<input value="Neue Runde starten" type="submit" onclick="newround()">
+<input value="User hinzufügen" type="submit" onclick="adduser()">
+<input value="User kicken" type="submit" onclick="kickuser()">
+<input value="Gruppe löschen" type="submit" onclick="deletegroup()">

@@ -1,0 +1,8 @@
+<script>
+	function leavegroup(){
+		sock.send('DELUSER: '+document.getElementById('footertext').innerHTML)
+	}
+</script>
+
+
+<input value="Gruppe verlassen" type="submit" onclick="leavegroup()">

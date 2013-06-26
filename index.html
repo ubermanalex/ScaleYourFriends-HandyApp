@@ -2,15 +2,17 @@
 
 <head>
 	<meta charset="utf-8"/>
-	<meta name="author" content="Alexander Vielhauer">
-	<title>Scale Your Friends</title>
+	<meta author="Gruppe 1"/>
+	<title>DjCrowd</title>
 	<link href="style.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 	<script type="text/javascript" src="utility.js"></script>
 	<meta name="viewpoint" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-		<script>
+	<script>
+		
+
 		var sock = null;
 		var wsuri = "ws://localhost:9034";
 
@@ -37,94 +39,78 @@
 						alert("Nutzername bereits vergeben!");
 						usernameinput.value = "";
 						break;
-					case "USERADD":
+					case "NAMFREE":
 						loadhome();
 						break;
-					case "MGROUPS":
+					case "SONGIND":
+						alert("Dein Vorschlag\n" + data + "\nist bereits\nin der Crowdlist!");
+						break;
+					case "SONGINP":
+						alert("Dein Vorschlag\n"+data+"\nwird vom DJ verarbeitet.");
+						break;
+					case "SONGINR":
+						alert("Dein Vorschlag\n"+data+"\nwurde bereits abgelehnt.");
+						break;
+					case "MAXSONG":
+						alert("Du hast bereits\nzwei Lieder vorgeschlagen.");
+						break;
+					case "MAXVOTE":
+						alert("Du hast momentan\nkeine Votes mehr.\nIn " + data + " erhälst du drei neue Votes");
+						break;
+					case "SONGADD":
+						alert("Glückwunsch!\nDein Vorschlag\n" + data + "\nwurde angenommen.");
+						break;
+					case "SONGRE1":
+						alert("Dein Vorschlag\n" + data + "\nist bereits\nin der Crowdlist!");
+						break;
+					case "SONGRE2":
+						alert("Sorry!\nDer DJ hat deinen Vorschlag\n" + data + "\nleider nicht.");
+						break;
+					case "SONGRE3":
+						alert("Sorry!\nDein Vorschlag\n" + data + "\npasst heute leider nicht.");
+						break;
+					case "SONGBLO":
+						alert("Du wurdest wegen deinem Vorschlag\n" + data + "\ngesperrt!");
+						newSuggests(0);
+						break;
+					case "USERBLC":
+						alert("Du wurdest vom DJ gesperrt!");
+						break;
+					case "POINTGR":
+						alert("Glückwunsch!\nDu hast\n"+data+" Punkte erhalten!");
+						break;
+					case "USEREXI":
+						loadhome();
+						document.getElementById('headeruser').innerHTML = data;
+						break;
+					case "ACTSUGG":
+						newSuggests(data);
+						break;
+					case "POINTCO":
+						neuePunkte(data);
+						break;
+					case "ACTVOTE":
+						neueVotes(data);
+						break;
+					case "SONGDB1":
+						$("#content").load("home.html", function(){
 						splitdata = data.split('!#!');
-						for (split in splitdata){
-						splitdata[split] = splitdata[split].replace(/##/g,"<br>Chief: ");
-						}
-						//name##master
-						//$("#content").load("jquerysucks.html", function() {
-							$("#content").load("home.html", function() {
-								clear_list('grouplist')
-								add_li('grouplist', '<data-role="list-divider" role="heading">' + 'Deine Gruppen')
-								load_list('grouplist', splitdata)
-							});
-						//});
-
-						break;
-					case "MYGROUP":
-						splitdata = data.split('##');
-						//player
-						$("#content").load("jquerysucks.html", function() {
-							$("#content").load("home.html", function() {
-								clear_list('grouplist')
-								x = splitdata.pop(); //U or M
-								y = splitdata.pop(); //groupname
-								document.getElementById('footertext').innerHTML = y;
-								add_li('grouplist', '<data-role="list-divider" role="heading">' + y +' - Mitglieder');
-								load_list2('grouplist', splitdata);
-								if (x=="M"){
-									$("#buttons").load("master.html", function() {
-									});	
-								}
-								else {
-									$("#buttons").load("user.html", function() {
-									});
-								}
-							});
+						clear_list('songlist');
+						add_li('songlist', '<data-role="list-divider" role="heading"> Crowdlist');
+						load_list('songlist',splitdata);
 						});
-						
 						break;
-					case "NOTFOUN":
-						users = data.split('##');
-						if (users[0] == "") {
-							return 0;
-						}
-						push = "Folgende Nutzer konnten nicht gefunden werden:\n";
-						for (x in users) {
-							push += users[x] + '\n'
-						}
-						alert(push);
-						break;
-					case "DELGROU":
-						alert("Gruppe "+data+" wurde gelöscht.");
-						sock.send("MYGROUPS: ");
-						break;
-					case "KICUSER":
-						alert("Du wurdest aus der Gruppe\n"+data+" gekickt.")
-						//sock.send("MYGROUPS: ");
-						break;
-					case "NOKICKU":
-						alert(data+" konnte nicht gefunden werden.")
 					default:
 						break;
 				}
 			}
 		};
-		/*alert("yo");
-		 $("#content").load("home.html", function() {
-		 });
-		 $.get('home.html', function (response){
-		 var myHtml = $('#homecontent', response);
-		 $('#content').html(response);
-		 });*/
 
 		function loadhome() {
-
-			//TODO:WARUMGEHTHIERNICHT?document.getElementById('headeruser').innerHTML = username;
-			/*$.get('home.html', function(data) {
-			 $('#content').html(data);
-			 alert('Load was performed.');
-			 });*/
-			$("#content").load("jquerysucks.html", function() {
-				$("#content").load("home.html", function() {
-					send('MYGROUPS: ');
-				});
-			});
-
+			
+			newVote(3);
+			newPunkte(0);
+			newSuggests(2);			
 		}
 
 		function senduser(username) {
@@ -137,7 +123,35 @@
 			}
 
 		}
-
+		
+		function newSuggests(data){
+			newsuggestions = data;
+			suggestions = "Suggests: "+newsuggestions+"/2";
+			document.getElementById('suggestionablesongs').innerHTML = suggestions;
+		}
+		
+		function newPunkte(data){
+			newPunkte = data;
+			Punkte = "Punkte: "+newPunkte;
+			document.getElementById('points').innerHTML = Punkte;		
+		}
+		
+		function neuePunkte(data){
+			Punkte = "Punkte: "+data;
+			document.getElementById('points').innerHTML = Punkte;
+		}
+		
+		function newVote(data){
+			newvotecount = data;
+			vote = "Votes: "+newvotecount+"/3";
+			document.getElementById('votecounter').innerHTML = vote;
+		}
+		
+		function neueVotes(data){
+			newvotes = data;
+			votes = "Votes: "+newvotes+"/3";
+			document.getElementById('votecounter').innerHTML = votes;
+		}
 	</script>
 </head>
 
@@ -147,30 +161,34 @@
 
 		<header>
 			<div data-theme="a" data-role="header" id="header">
-				<a data-role="button" onclick="loadhome()" class="ui-btn-left" id="button1" data-icon="home" data-iconpos="left"> Home </a>
-				<a data-role="button" onclick="info()" class="ui-btn-right" id="button2" data-icon="info" data-iconpos="right"> Info </a>
-				<h3 id="headeruser"> Scale Your Friends </h3>
+				<h3 id="headeruser"> DjCrowd </h3>
 			</div>
 		</header>
+		
+		<h3 id="suggestionablesongs"></h3>
 
+		<h3 id="votecounter"></h3>
+
+		<h3 id="points"></h3>
+		
 		<div data-role="content" id="content">
 			<h2> Willkommen bei
 			<br>
-			Scale Your Friends </h2>
+			DjCrowd </h2>
 			<div data-role="fieldcontain">
 				<label for="usernameinput" id="tests"> Nutzername </label>
 				<input name="" id="usernameinput" placeholder="Hier Nutzernamen eingeben"
 				value="" type="text" onkeyup="check(usernameinput.value,12,usernameinput)">
 			</div>
-			<input id="login" value="Einloggen !" type="submit" onclick="senduser(usernameinput.value)">
+			<input value="Get the Party started !" type="submit" onclick="senduser(usernameinput.value)">
 
 		</div>
 
 		<div id="chat">
 
 		</div>
-		<footer id="footer" data-theme="a" data-role="footer" data-position="fixed">
-			<h3 id="footertext">Scale Your Friends</h3>
+		<footer data-theme="a" data-role="footer" data-position="fixed">
+			<h3>Dj Crowd</h3>
 		</footer>
 	</div>
 </body>

@@ -1,7 +1,32 @@
-
-	
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 
 <script>
+
+
+	function send(str){
+	sock.send(str);
+	}
+
+	function addsong(){
+	
+	interpret = prompt ("Bitte Interpret eingeben.");
+			while (interpret.length < 2 || interpret.length > 20)
+				{
+					interpret = prompt("Bitte minimal 2, maximal 20 Zeichen angeben.");
+				}
+	songtitle = prompt ("Bitte Songtitel eingeben.");
+			while (songtitle.length < 2 || songtitle.length > 50)
+				{
+					songtitle = prompt("Bitte minimal 2, maximal 50 Zeichen angeben.");
+				}
+	song = document.getElementById('headeruser').innerHTML+'##'+interpret+'##'+songtitle;
+	
+	send('SONG: '+interpret+'##'+songtitle+'##'+document.getElementById('headeruser').innerHTML);
+	//insertItem('songlist',1,'<li data-theme="c" onclick="vote('+song+')">'+interpret+" - "+songtitle+'</li>');
+	}
+	
 	function add_li(list, text) {
 		var list = document.getElementById(list);
 		var li = document.createElement("li");
@@ -10,64 +35,47 @@
 	}
 
 	function load_list(list, list_array) {
+		//add_li(list, "<data-role="list-divider" role="heading"> Crowdlist>")
 		for (var i = 0; i < list_array.length; i++) {
-			xxx = list_array[i].split('<br>Chief: ');
-			x = xxx[0]+'##'+xxx[1];		//name##master
-			add_li(list, "<a href='javascript: loadgroup(x)'>"+list_array[i]+"</a>");
+			xxx = list_array[i].split('##');
+			x = document.getElementById('headeruser').innerHTML+'##'+xxx[0]+'##'+xxx[1];
+			add_li(list, "<a href='javascript: vote(x)'>"+list_array[i]+"</a>");
 		}
 	}
+	
+	function clear_list (list) { 
+	var list = document.getElementById(list); 
+	while( list.hasChildNodes() ) { 
+	list.removeChild( list.lastChild ); } 
+	} 
 
-	function load_list2(list, list_array) {
-		for (var i = 0; i < list_array.length; i++) {
-			add_li(list, list_array[i]);
-		}
+		
+	function insertItem(myid,position,newListItem) {
+	var ul = document.getElementById(myid);
+	var li = document.createElement("li");
+	li.innerHTML=newListItem;
+	ul.insertBefore(li, ul.getElementsByTagName("li")[position]);
 	}
-
-	function clear_list(list) {
-		var list = document.getElementById(list);
-		while (list.hasChildNodes()) {
-			list.removeChild(list.lastChild);
-		}
+	
+	
+	function vote(song){
+		var String = song.split('##');
+		var answear = confirm("Für  '" +String[1]+" - "+String[2]+ "'  voten?");
+		if (answear){
+			sock.send('VOTE: '+song);}
+		
 	}
-
-	function send(str) {
-		sock.send(str);
-	}
-
-	function newgroup() {
-
-		name = prompt("Bitte Gruppennamen eingeben.");
-		users = prompt("Bitte Freunde eingeben. (durch Kommata getrennt)");
-		users.replace(/ /g,"");
-		userlist = users.split(",");
-		users = ""
-		for (user in userlist) {
-			users = users + '##' + userlist[user]
-		}
-
-		group = name + '##' + document.getElementById('headeruser').innerHTML + users;
-
-		send('GROUP: ' + group);
-		//add_li('grouplist', "<a href='javascript:clock()'>" + name + "</a>");
-	}
-
-	function loadgroup(x) {
-		group = x.split('##')
-		send('THISGROUP: '+group[0])				
-	}
-
-	/*$("#content").load("addsong.html", function() {
-	 });
-	 }*/
 
 </script>
 
+<input value="Song hinzufügen" type="submit" onclick="addsong()">
 
-<div id="ra">
-<div id="buttons">
-<input value="Gruppe erstellen" type="submit" onclick="newgroup()">
-</div>
-<ul id="grouplist" data-role="listview" data-divider-theme="b" data-inset="true">
-<li data-theme="c">Deine Gruppen</li>
+<input type='button' value='Insert (TODO)'  onclick="insertItem('songlist',1,'<li>test</li>')">
+
+<input type='button' value='Vote (TODO)'  onclick="vote(document.getElementById('headeruser').innerHTML+'##Rallo##Welt')">
+
+<ul id="songlist" data-role="listview" data-divider-theme="b" data-inset="true">
+	<li data-role="list-divider" role="heading">
+		Crowdlist
+	</li>
 </ul>
-</div>

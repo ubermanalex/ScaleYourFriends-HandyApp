@@ -1,0 +1,447 @@
+/*SLIDERHIGHLIGHT*/
+
+.ui-bar-a {
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #777 ),to( #111 ));
+	background-image: -webkit-linear-gradient( #777,#111 );
+	background-image: -moz-linear-gradient( #777,#111 );
+	background-image: -ms-linear-gradient( #777,#111 );
+	background-image: -o-linear-gradient( #777,#111 );
+	background-image: linear-gradient( #777,#111 )
+}
+
+div.ui-btn-active {
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #ffefaa ),to( #ffe155 ));
+	background-image: -webkit-linear-gradient( #ffefaa,#ffe155 );
+	background-image: -moz-linear-gradient( #ffefaa,#ffe155 );
+	background-image: -ms-linear-gradient( #ffefaa,#ffe155 );
+	background-image: -o-linear-gradient( #ffefaa,#ffe155 );
+	background-image: linear-gradient( #ffefaa,#ffe155 )
+}
+
+.ui-body-c, .ui-overlay-c {
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #ffefaa ),to( #B8FFA8 ));
+	background-image: -webkit-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -moz-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -ms-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -o-linear-gradient( #ffefaa,#B8FFA8 );
+	/*TODOB8FFA8*/
+	background-image: linear-gradient( #ffefaa,#B8FFA8 )
+}
+
+.ui-btn-left {
+	font-size: 50px !important;
+}
+
+/*INDEX*/
+
+#headeruser {
+	font-variant: small-caps;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #ffe155;
+
+}
+
+div.ui-slider-switch {
+	height: 32px;
+	margin-left: 0;
+	width: 50%;
+	position: absolute;
+	left: 25%;
+	top: 47%;
+}
+
+#load {
+	position: fixed !important;
+	width: 80% !important;
+	left: 10%;
+	top: 70%;
+}
+
+#greet {
+	text-align: center;
+	position: fixed !important;
+	top: 15%;
+	left: 0;
+	right: 0;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+#ayf {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	position: fixed !important;
+	top: 21%;
+	left: 0;
+	right: 0;
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#gamemode {
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+	position: fixed !important;
+	top: 35%;
+	left: 0;
+	right: 0;
+}
+
+/*INDEXOFFLINE*/
+
+/*.oben {
+ text-align: center !important;
+ color: #004236;
+ font-family: "Palatino Linotype", "Arial";
+ position: absolute !important;
+ top: 30% !important;
+ width: 100%;
+ left: 0 !important;
+ right: 0 !important;
+ }*/
+
+#press {
+	position: fixed !important;
+	top: 20% !important;
+	width: 100%;
+	left: 0 !important;
+	right: 0 !important;
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+#forstart {
+	position: fixed !important;
+	top: 33% !important;
+	width: 100%;
+	left: 0 !important;
+	right: 0 !important;
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+#start {
+	font-family: Arial, Helvetica, sans-serif;
+	position: fixed !important;
+	top: 25% !important;
+	width: 100%;
+	left: 0 !important;
+	right: 0 !important;
+	text-align: center;
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+.unten {
+	position: fixed !important;
+	width: 80% !important;
+	left: 10% !important;
+	top: 65% !important;
+}
+
+/*ASKQUEST*/
+
+.choosehow {
+	position: absolute;
+	top: 40%;
+	width: 50%;
+	left: 25%;
+}
+
+.askwhatever {
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+	position: absolute;
+	top: 17%;
+	left: 0;
+	right: 0;
+}
+
+.askuser{
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute !important;
+	top: 11% !important;
+	width: 100%;
+	left: 0 !important;
+	right: 0 !important;
+	text-align: center;
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.askinput {
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+	position: absolute;
+	top: 50%;
+	width: 90%;
+	left: 5%;
+	right: 0;
+}
+
+.weiter {
+	position: absolute;
+	width: 80% !important;
+	left: 10%;
+	top: 76%;
+}
+
+/*LIMITS*/
+
+.formulalinks {
+	position: absolute;
+	top: 45%;
+	left: 5%;
+	right: 0;
+	width: 30%;
+}
+
+.formularight {
+	position: absolute;
+	top: 45%;
+	right: 5%;
+	width: 30%;
+}
+
+.sliderbeschriften {
+	position: absolute;
+	top: 54%;
+	left: 0%;
+	width: 132%;
+}
+
+.button1 {
+	position: absolute;
+	width: 80% !important;
+	left: 10%;
+	top: 75%;
+}
+
+.textskalenenden {
+	position: absolute;
+	text-align: center;
+	top: 13%;
+	left: 0;
+	right: 0;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+.textoptional {
+	position: absolute;
+	text-align: center;
+	top: 24%;
+	left: 0;
+	right: 0;
+	font-style: italic;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+/*ANSWQUESTION*/
+
+.answlinks {
+	position: absolute;
+	text-align: left;
+	top: 32%;
+	left: 3%;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.answrechts {
+	position: absolute;
+	text-align: right;
+	top: 32%;
+	right: 3%;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.answslider {
+	position: absolute;
+	top: 43%;
+	left: 0%;
+	right: 0;
+	width: 132%;
+}
+
+.answbutton {
+	position: absolute;
+	width: 80% !important;
+	left: 10%;
+	top: 73%;
+}
+
+.answfrage {
+	position: absolute;
+	text-align: center;
+	top: 20%;
+	left: 0;
+	right: 0;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.answuser{
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute !important;
+	top: 13% !important;
+	width: 100%;
+	left: 0 !important;
+	right: 0 !important;
+	text-align: center;
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.ui-slider-input {
+	position: absolute !important;
+	top: 150% !important;
+	left: 28.5%;
+	/*width: 50px !important;
+	 height: 50px !important;*/
+	font-size: 25px !important;
+}
+
+/*GUESSANSWER*/
+
+.guessbutton {
+	position: absolute;
+	width: 80% !important;
+	left: 10%;
+	top: 78%;
+}
+
+/*WINOFFLINE*/
+
+.winbutton {
+	position: fixed;
+	width: 80% !important;
+	left: 10%;
+	top: 70%;
+}
+
+.winperson {
+	font-family: "Arial";
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+	text-align: center;
+	position: absolute;
+	top: 10%;
+	left: 0;
+	right: 0;
+}
+
+.winwinner {
+	position: fixed;
+	text-align: center;
+	top: 16%;
+	left: 0;
+	right: 0;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.winproc {
+	position: fixed;
+	text-align: center;
+	top: 35%;
+	left: 0;
+	right: 0;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+/*POPUP*/
+
+.popayf {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-variant: small-caps;
+	color: #ffe155;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.loff {
+	text-align: center;
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.popuptext {
+	/*position: fixed;*/
+	text-align: center;
+	/*left: 0;
+	 right: 0;*/
+	color: #004236;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.poperror {
+	text-align: center;
+	/*left: 0;
+	 right: 0;*/
+	color: #BD0023;
+	font-family: "Palatino Linotype", "Arial";
+}
+
+.Popuplist {
+	display: none;
+	background: #E2FFDB;
+	left: 10%;
+	/*margin-left: -250px;*/
+	position: absolute;
+	top: 35%;
+	width: 80%;
+	z-index: 3;
+	box-shadow: 0 0 10px #222;
+}
+
+.Popup {
+	display: none;
+	background: #E2FFDB;
+	left: 10%;
+	/*margin-left: -250px;*/
+	position: absolute;
+	top: 35%;
+	width: 80%;
+	z-index: 3;
+	box-shadow: 0 0 10px #222;
+	/*padding: 10px;*/
+}
+
+.popupform {
+	width: 80% !important;
+	left: 10% !important;
+	margin: auto !important;
+}
+
+.closePopupbtn {
+	width: 50% !important;
+	margin: auto !important;
+}
+
+#overlay {
+	display: none;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.5)));
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);: radial-gradient(ellipse at center,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#80000000',GradientType=1 );
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2;
+	top: 0px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<head>
+	<meta charset="utf-8"/>
+	<title>AskWhatever</title>
+	<link rel="stylesheet" href="jquery.mobile-1.2.1.min.css" />
+	<link rel="stylesheet" href="style.css" />
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="jquery.mobile-1.2.1.min.js"></script>
+	<script src="offline/functions.js"></script>
+	<meta name="viewpoint" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+	<script>
+		function load() {
+			var val = document.getElementById('toggleswitch1').value
+			if (val == "on") {
+				alert("Der Online-Modus ist\nleider noch nicht verfügbar.");
+			} else if (val == "off") {
+				$("#contentindex").load("offline/indexoffline.html", function() {
+					$('#contentindex').appendTo('.ui-page').trigger('create');
+				});
+			} else {
+				return 0
+			}
+		}
+
+		function loadhome() {
+			window.location.href = "index.html";
+		}
+
+	</script>
+</head>
+<body>
+	<div data-role="page" id="index">
+
+		<header>
+			<div data-theme="a" data-role="header" id="header">
+				<a data-role="button" onclick="loadhome()" class="ui-btn-left" id="button1" data-icon="home"> Home </a>
+				<a data-role="button" href="http://www.youtube.de" class="ui-btn-right" id="button2" data-icon="info" data-iconpos="right"> Info </a>
+				<h2 id="headeruser"> Ask Your Friends </h2>
+			</div>
+		</header>
+
+		<div id="contentindex">
+
+			<h2 id="greet" text-align="center"> Willkommen bei</h2>
+			<h2 id="ayf"> Ask Your Friends</h2>
+			<br>
+			<h3 id="gamemode" text-align="center"> Wähle einen Spielmodus. </h3>
+
+			<div id="switch">
+				<select name="toggleswitch1" id="toggleswitch1" data-theme="" data-role="slider">
+					<option value="off"> Offline </option>
+					<option value="on"> Online </option>
+				</select>
+			</div><a data-role="button" data-theme="e" id="load" data-icon="star" data-iconpos="right"onclick="load()"> ask your friends </a>
+
+		</div>
+		<div id="chat">
+
+		</div>
+
+	</div>
+</body>
+</html>

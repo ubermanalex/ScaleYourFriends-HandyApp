@@ -1,0 +1,66 @@
+<style>
+	input.ui-slider-input {
+		display: none;
+	}
+</style>
+
+<script>
+	/** checks input **/
+
+	function checkInputLength(String, Integer) {
+		var length = (String.length);
+		return (length > Integer);
+	}
+
+	function checkright(String, Integer, id) {
+
+		var key = window.event.keyCode;
+
+		// If the user has pressed enter
+		if (key == 13) {
+			ask();
+		}
+
+		if (checkInputLength(String, Integer)) {
+			x = Integer+1
+			alert("Zeichen auf " + x + " begrenzt!");
+			id.value = String.substr(0, Integer);
+		}
+	}
+	
+	function checkleft(String, Integer, id) {
+
+		if (checkInputLength(String, Integer)) {
+			x = Integer+1
+			alert("Zeichen auf " + x + " begrenzt!");
+			id.value = String.substr(0, Integer);
+		}
+	}
+</script>
+
+<div class="textskalenenden">
+	<h2 id="instr" align="center"> Bestimme nun
+	<br>
+	die Skalenenden.</h2>
+</div>
+
+<div class="textoptional">
+	<h5 id="optional" align="center"> (Diese Eingabe ist optional.) </h5>
+</div>
+
+<div class="sliderbeschriften">
+	<input disabled=true id="slider1" name="slider" value="50" min="0" max="100" data-highlight="false"
+	type="range">
+</div>
+
+<div class="formulalinks">
+	<input name="" id="leftend" onkeypress="checkleft(leftend.value,19,leftend)" placeholder="" value="" type="text">
+</div>
+
+<div class="formularight">
+	<input name="" id="rightend" onkeypress="checkright(rightend.value,19,rightend);" placeholder="" value="" type="text">
+</div>
+
+<div class="button1">
+	<input data-theme="e" data-iconpos="right" data-icon="arrow-r" value="Bestätigen" type="submit" id="buttongg" onclick="ask()">
+</div>

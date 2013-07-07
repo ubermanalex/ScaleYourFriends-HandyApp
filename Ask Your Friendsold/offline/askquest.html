@@ -1,0 +1,34 @@
+<script>
+	function onTestChange() {
+		var key = window.event.keyCode;
+
+		// If the user has pressed enter
+		if (key == 13) {
+			loadlimits();
+		}
+	}
+</script>
+<div class="askwhatever">
+	<h2 id="askwhatever">ask your friends!</h2>
+</div>
+
+<div class="askuser">
+	<h1 id="frageuser" align="center"></h1>
+</div>
+
+<div class ="choosehow">
+	<select data-theme="e" class="mySelect" id="selectmenu1" name="">
+		<option value="wie "> Wie... </option>
+		<option value="wie oft "> Wie oft... </option>
+		<option value="wie gerne "> Wie gerne... </option>
+		<option value="wie gut "> Wie gut... </option>
+	</select>
+</div>
+
+<div class="askinput">
+	<textarea name="" onkeypress="onTestChange();" id="frage" placeholder="..."></textarea>
+</div>
+
+<div class="weiter">
+	<input data-theme="e" value="Weiter" data-icon="arrow-r" data-iconpos="right" type="submit" id="buttonnext" onclick="loadlimits()">
+</div>

@@ -1,0 +1,34 @@
+<script>
+	function onTestChange() {
+		var key = window.event.keyCode;
+		// If the user has pressed enter
+		if (key == 13) {
+			input = document.getElementById('indexpop').value;
+			usepopinput(input)
+		}
+	}
+</script>
+
+<h3 id="press" align="center">Drücke</h3>
+<h1 id="start">Start</h1>
+<h3 id="forstart">um eine neue Runde
+<br>
+zu starten.</h3>
+
+<div class="unten">
+	<button data-theme="e" id="startbutton" type="button" data-role="button" onclick="newround()">
+		Start
+	</button>
+</div>
+
+<div class="Popup">
+	<h2 id="startplayer" class="popayf"></h2>
+	<h2 id="poptext" class="popuptext">Bitte Spieleranzahl eingeben:</h2>
+	<h2 id="poptext1" class="popayf"></h2>
+	<h4 id="poperror" class="poperror"></h4>
+	<input id="indexpop" class="popupform" placeholder="" value="" type="text" onkeypress="onTestChange();">
+	<div class="closePopupbtn">
+		<input class="closePopupbtn" data-theme="e" value="Weiter" type="submit">
+	</div>
+</div>
+<div id="overlay" class="closePopup"></div>

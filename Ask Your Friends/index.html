@@ -10,6 +10,11 @@
 	<!--<meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />-->
 	<meta name="viewpoint" content="width=device-width,initial-scale=1,maximum-scale=1"/>
 	<script>
+		$(document).ready(function() {
+			$(document).bind("touchmove", function(event) {
+				event.preventDefault();
+			});
+		});
 		function load() {
 			var val = document.getElementById('toggleswitch1').value
 			if (val == "on") {
@@ -34,9 +39,9 @@
 
 		<header>
 			<div data-theme="a" data-role="header" id="header">
-				<a data-role="button" onclick="loadhome()" class="ui-btn-left" id="button1" data-icon="home"> Home </a>
-				<a data-role="button" href="http://www.youtube.de" class="ui-btn-right" id="button2" data-icon="info" data-iconpos="right"> Info </a>
-				<h2 id="headeruser"> Ask Your Friends </h2>
+				<a data-role="button" onclick="loadhome()" class="ui-btn-left" id="button1" data-icon="home">Home</a>
+				<a data-role="button" href="http://www.youtube.de" class="ui-btn-right" id="button2" data-icon="info" data-iconpos="right">Info</a>
+				<h1 id="headeruser"> Ask Your Friends </h1>
 			</div>
 		</header>
 
@@ -46,7 +51,7 @@
 			<h2 id="ayf"> Ask Your Friends</h2>
 			<br>
 			<h3 id="gamemode" text-align="center"> Wähle einen Spielmodus. </h3>
-			
+
 			<div id="switch">
 				<select name="toggleswitch1" id="toggleswitch1" data-theme="" data-track-theme="e" data-role="slider">
 					<option value="off"> Offline </option>

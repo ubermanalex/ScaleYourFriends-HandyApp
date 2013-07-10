@@ -82,17 +82,17 @@ function usepopinput(input) {
 		return 0;
 	}
 
-	if (check == "true"){
-	var n = anzahl
-	var rnd = Math.floor(Math.random() * n);
-	var starter = newgroup.groupar[rnd];
-	spieler = rnd;
-	playvar = starter
-	document.getElementById('startplayer').innerHTML = starter
-	document.getElementById('poptext').innerHTML = "Du darfst die erste Frage stellen!";
-	document.getElementById('poptext1').innerHTML = "";
-	check = "false";
-	return 0
+	if (check == "true") {
+		var n = anzahl
+		var rnd = Math.floor(Math.random() * n);
+		var starter = newgroup.groupar[rnd];
+		spieler = rnd;
+		playvar = starter
+		document.getElementById('startplayer').innerHTML = starter
+		document.getElementById('poptext').innerHTML = "Du darfst die erste Frage stellen!";
+		document.getElementById('poptext1').innerHTML = "";
+		check = "false";
+		return 0
 	}
 }
 
@@ -209,6 +209,11 @@ function ask() {
 	}
 
 	$("#contentindex").load("offline/answerquestion.html", function() {
+		$(document).ready(function() {
+			$(document).bind("touchmove", function(event) {
+				event.preventDefault();
+			});
+		});
 		document.getElementById('ansleft').innerHTML = left
 		document.getElementById('ansright').innerHTML = right
 		$('#contentindex').appendTo('.ui-page').trigger('create');
@@ -261,6 +266,11 @@ function mapanswer() {
 	answerproc = ($('#slider1').val());
 	answerlist.splice(spieler * 3, 1, answerproc);
 	$("#contentindex").load("offline/guessanswer.html", function() {
+		$(document).ready(function() {
+			$(document).bind("touchmove", function(event) {
+				event.preventDefault();
+			});
+		});
 		getfriend()
 		if (left != "") {
 			document.getElementById('label1').innerHTML = left
@@ -275,7 +285,7 @@ function getfriend() {
 		gfriend = Math.floor(Math.random() * anzahl);
 		while (gfriend == spieler) {
 			gfriend = Math.floor(Math.random() * anzahl);
-		}		
+		}
 		document.getElementById('guessuser').innerHTML = newgroup.groupar[spieler]
 		document.getElementById('guessone').innerHTML = "wie ist " + newgroup.groupar[gfriend] + "s Antwort?";
 		answerlist.splice((spieler * 3) + 1, 1, gfriend)
@@ -337,6 +347,9 @@ function mapguess() {
 			$('#overlay').fadeIn("slow");
 
 			$(document).ready(function() {
+				$(document).bind("touchmove", function(event) {
+					event.preventDefault();
+				});
 				$('.closePopupbtn').click(function(e) {
 					$(".Popup").fadeOut("slow");
 					$("#overlay").fadeOut("slow");

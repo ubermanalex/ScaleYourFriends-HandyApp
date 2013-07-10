@@ -1,6 +1,7 @@
 /*! jQuery Mobile vGit Build: SHA1: 27e3c18acfebab2d47ee7ed37bd50fc4942c8838 <> Date: Fri Mar 22 08:50:04 2013 -0600 jquerymobile.com | jquery.org/license !*/
 .ui-bar-a {
-	border: 1px solid #333;
+	top: -3px;
+	border: 2px solid #004236;
 	background: #111;
 	color: #fff;
 	font-weight: bold;
@@ -1074,7 +1075,7 @@ body.ui-mobile-viewport, div.ui-mobile-viewport {
 }
 .ui-header .ui-btn-left, .ui-header .ui-btn-right, .ui-footer .ui-btn-left, .ui-footer .ui-btn-right {
 	position: absolute;
-	top: 3px
+	top: 7px
 }
 .ui-header .ui-btn-left, .ui-footer .ui-btn-left {
 	left: 5px
@@ -1088,10 +1089,11 @@ body.ui-mobile-viewport, div.ui-mobile-viewport {
 .ui-header .ui-title, .ui-footer .ui-title {
 	min-height: 1.1em;
 	text-align: center;
-	font-size: 16px;
+	font-size: 19px;
 	display: block;
-	margin: .6em 30% .8em;
+	margin: .9em 25% .8em;
 	padding: 0;
+	padding-left: 7px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
@@ -1802,7 +1804,7 @@ to {
 }
 .ui-navbar .ui-grid-duo li.ui-block-a:last-child .ui-btn {
 	margin-right: -1px;
-	border-right-width: 1px
+	border-right-width: 5px
 }
 .ui-header .ui-navbar li .ui-btn, .ui-footer .ui-navbar li .ui-btn {
 	border-top-width: 0;
@@ -1841,10 +1843,12 @@ to {
 }
 .ui-btn-left, .ui-btn-right, .ui-input-clear, .ui-btn-inline, .ui-grid-a .ui-btn, .ui-grid-b .ui-btn, .ui-grid-c .ui-btn, .ui-grid-d .ui-btn, .ui-grid-e .ui-btn, .ui-grid-solo .ui-btn {
 	margin-right: 5px;
-	margin-left: 5px
+	margin-left: 5px;
+	/*TODO:*/
+	border: 2px solid #004236;
 }
 .ui-btn-inner {
-	font-size: 16px;
+	font-size: 18px;
 	padding: .6em 20px;
 	min-width: .75em;
 	display: block;

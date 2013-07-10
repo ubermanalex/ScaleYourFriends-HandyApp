@@ -28,12 +28,13 @@ input.ui-slider-input, .ui-field-contain input.ui-slider-input {
 /*SLIDERHIGHLIGHT*/
 
 .ui-bar-a {
-	background-image: -webkit-gradient(linear,left top,left bottom,from( #444 ),to( #111 ));
-	background-image: -webkit-linear-gradient( #444,#111 );
-	background-image: -moz-linear-gradient( #444,#111 );
-	background-image: -ms-linear-gradient( #444,#111 );
-	background-image: -o-linear-gradient( #444,#111 );
-	background-image: linear-gradient( #444,#111 )
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #FFEA8F ),to( #ffefaa ));
+	background-image: -webkit-linear-gradient( #FFEA8F,#ffefaa );
+	background-image: -moz-linear-gradient( #FFEA8F,#ffefaa );
+	background-image: -ms-linear-gradient( #FFEA8F,#ffefaa );
+	background-image: -o-linear-gradient( #FFEA8F,#ffefaa );
+	background-image: linear-gradient( #FFEA8F,#ffefaa )
+	/*border: 50px solid #004236 !important;*/
 }
 
 div.ui-btn-active {
@@ -55,7 +56,25 @@ div.ui-btn-active {
 }
 
 .ui-btn-left {
-	font-size: 50px !important;
+	font-family: "customfont","Palatino Linotype", "Arial";
+	color: #004236; !important;
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #ffefaa ),to( #B8FFA8 ));
+	background-image: -webkit-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -moz-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -ms-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -o-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: linear-gradient( #ffefaa,#B8FFA8 )
+}
+
+.ui-btn-right {
+	font-family: "customfont","Palatino Linotype", "Arial";
+	color: #004236; !important;
+	background-image: -webkit-gradient(linear,left top,left bottom,from( #ffefaa ),to( #B8FFA8 )) !important;
+	background-image: -webkit-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -moz-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -ms-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: -o-linear-gradient( #ffefaa,#B8FFA8 );
+	background-image: linear-gradient( #ffefaa,#B8FFA8 )
 }
 
 /*INDEX*/
@@ -64,7 +83,9 @@ div.ui-btn-active {
 	font-variant: small-caps;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #ffe155;
-
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #000000;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 div.ui-slider-switch {
@@ -461,6 +482,13 @@ div.ui-slider-switch {
 	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
 	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
 	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);: radial-gradient(ellipse at center,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	
+	background: -webkit-linear-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: -moz-linear-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: -ms-linear-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: -o-linear-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	background: linear-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 100%);
+	
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#80000000',GradientType=1 );
 	width: 100%;
 	height: 100%;
